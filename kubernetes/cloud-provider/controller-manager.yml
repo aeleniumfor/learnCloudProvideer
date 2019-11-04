@@ -5,8 +5,8 @@ metadata:
   name: cloud-controller-manager
   namespace: kube-system
 ---
-kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
   name: system:cloud-controller-manager
 roleRef:
@@ -39,10 +39,10 @@ spec:
       - name: cloud-controller-manager
         # for in-tree providers we use k8s.gcr.io/cloud-controller-manager
         # this can be replaced with any other image for out-of-tree providers
-        image: sasenomura/cloud-controller-manager:v1
+        image: sasenomura/cloud-controller-manager:v2
         command:
         - /go/src/github.com/learnCloudProvideer/main
-        - --cloud-provider=cloud   # Add your own cloud provider here!
+        - --cloud-provider=cloud  # Add your own cloud provider here!
         - --leader-elect=true
         - --use-service-account-credentials
       tolerations:
