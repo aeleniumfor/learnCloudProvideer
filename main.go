@@ -26,7 +26,6 @@ func main() {
 	defer logs.FlushLogs()
 
 	klog.V(1).Infof("cloud-controller-manager version: %s", "1")
-	// cloud, err := cloudprovider.InitCloudProvider("rancher", s.CloudConfigFile)
 
 	if err := command.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)

@@ -10,9 +10,8 @@ type cloud struct {
 	loadBalancers cloudprovider.LoadBalancer
 }
 
-// type LB struct {
-// 	ipAddr string
-// }
+// ProviderName is ProviderName
+const ProviderName = "cloud"
 
 func newCloud(configReader io.Reader) (cloudprovider.Interface, error) {
 	return &cloud{
@@ -21,7 +20,7 @@ func newCloud(configReader io.Reader) (cloudprovider.Interface, error) {
 }
 
 func init() {
-	cloudprovider.RegisterCloudProvider("cloud", func(config io.Reader) (cloudprovider.Interface, error) {
+	cloudprovider.RegisterCloudProvider(ProviderName, func(config io.Reader) (cloudprovider.Interface, error) {
 		return newCloud(config)
 	})
 }
