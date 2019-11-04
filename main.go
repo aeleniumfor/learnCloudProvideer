@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"math/rand"
 	"net/http"
 	"os"
@@ -15,12 +14,12 @@ import (
 )
 
 func init() {
-	log.Panicln("start init")
+	fmt.Fprintf(os.Stderr, "start: %v\n", "init")
 	healthz.InstallHandler(http.DefaultServeMux)
 }
 
 func main() {
-	log.Println("start main func")
+	fmt.Fprintf(os.Stderr, "start: %v\n", "main")
 	rand.Seed(time.Now().UnixNano())
 
 	command := app.NewCloudControllerManagerCommand()

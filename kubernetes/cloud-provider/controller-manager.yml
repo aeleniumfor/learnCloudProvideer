@@ -37,14 +37,15 @@ spec:
       serviceAccountName: cloud-controller-manager
       containers:
       - name: cloud-controller-manager
+        tty: true
         # for in-tree providers we use k8s.gcr.io/cloud-controller-manager
         # this can be replaced with any other image for out-of-tree providers
-        image: sasenomura/cloud-controller-manager:v2
-        command:
-        - /go/src/github.com/learnCloudProvideer/main
-        - --cloud-provider=cloud  # Add your own cloud provider here!
-        - --leader-elect=true
-        - --use-service-account-credentials
+        image: sasenomura/cloud-controller-manager:v2.02
+        # command:
+        # - /go/src/github.com/learnCloudProvideer/main
+        # - --cloud-provider=cloud  # Add your own cloud provider here!
+        # - --leader-elect=true
+        # - --use-service-account-credentials
       tolerations:
       # this is required so CCM can bootstrap itself
       - key: node.cloudprovider.kubernetes.io/uninitialized
