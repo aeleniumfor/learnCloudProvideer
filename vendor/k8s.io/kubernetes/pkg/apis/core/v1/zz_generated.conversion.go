@@ -4847,6 +4847,7 @@ func autoConvert_core_NodeSpec_To_v1_NodeSpec(in *core.NodeSpec, out *v1.NodeSpe
 	out.Taints = *(*[]v1.Taint)(unsafe.Pointer(&in.Taints))
 	out.ConfigSource = (*v1.NodeConfigSource)(unsafe.Pointer(in.ConfigSource))
 	// out.DoNotUse_ExternalID = in.DoNotUse_ExternalID
+	
 	return nil
 }
 

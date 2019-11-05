@@ -1203,7 +1203,7 @@
   revision = "743ec37842bf"
 
 [[projects]]
-  digest = "1:3265a1c791daf59aab38fb3b92bb53a5a8cafb4bda57fbc40ce780ab47b399f3"
+  digest = "1:3aa83a514a2401b85a49418755f890f9b2918ce67bf853c0e2ae2e9c382589e2"
   name = "k8s.io/kubernetes"
   packages = [
     "cmd/cloud-controller-manager/app",
@@ -1229,6 +1229,7 @@
     "pkg/apis/scheduling",
     "pkg/capabilities",
     "pkg/client/leaderelectionconfig",
+    "pkg/client/metrics/prometheus",
     "pkg/controller",
     "pkg/controller/apis/config",
     "pkg/controller/apis/config/v1alpha1",
@@ -1295,6 +1296,7 @@
     "pkg/util/parsers",
     "pkg/util/taints",
     "pkg/version",
+    "pkg/version/prometheus",
     "pkg/version/verflag",
   ]
   pruneopts = "UT"
@@ -1302,7 +1304,7 @@
   version = "v1.16.2"
 
 [[projects]]
-  digest = "1:2f8f776981f0de300294eb420b27d47d381cc1a60ab2779822ffca824e28b6c2"
+  digest = "1:63cf84a9cbda683a6164dd79fb29596b9fbbb6db71e6f2cc1eeb455819bc5eb7"
   name = "k8s.io/utils"
   packages = [
     "buffer",
@@ -1310,7 +1312,6 @@
     "net",
     "path",
     "pointer",
-    "strings",
     "trace",
   ]
   pruneopts = "UT"
@@ -1347,7 +1348,8 @@
     "k8s.io/component-base/logs",
     "k8s.io/klog",
     "k8s.io/kubernetes/cmd/cloud-controller-manager/app",
-    "k8s.io/utils/strings",
+    "k8s.io/kubernetes/pkg/client/metrics/prometheus",
+    "k8s.io/kubernetes/pkg/version/prometheus",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
