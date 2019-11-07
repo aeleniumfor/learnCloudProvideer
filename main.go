@@ -30,6 +30,7 @@ func main() {
 	fmt.Fprintf(os.Stderr, "start: %v\n", "command")
 	command := app.NewCloudControllerManagerCommand()
 
+
 	fmt.Fprintf(os.Stderr, "start: %v\n", "init")
 	logs.InitLogs()
 	defer logs.FlushLogs()

@@ -1,7 +1,9 @@
 package provider
 
 import (
+	"fmt"
 	"io"
+	"os"
 
 	cloudprovider "k8s.io/cloud-provider"
 )
@@ -14,6 +16,7 @@ type cloud struct {
 const ProviderName = "cloud"
 
 func newCloud(configReader io.Reader) (cloudprovider.Interface, error) {
+	fmt.Fprintf(os.Stderr, "star: %v\n", "newCloud")
 	return &cloud{
 		loadBalancers: newLoadbalancers(),
 	}, nil
