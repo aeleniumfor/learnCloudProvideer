@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	
 	_ "github.com/learnCloudProvideer/provider"
 
 	"k8s.io/apiserver/pkg/server/healthz"
@@ -14,8 +15,9 @@ import (
 	"k8s.io/klog"
 	"k8s.io/kubernetes/cmd/cloud-controller-manager/app"
 
-	_ "k8s.io/kubernetes/pkg/client/metrics/prometheus" // for client metric registration
-	_ "k8s.io/kubernetes/pkg/version/prometheus" // for version metric registration
+	_ "k8s.io/kubernetes/pkg/client/metrics/prometheus"
+	_ "k8s.io/kubernetes/pkg/version/prometheus"
+
 )
 
 func init() {
