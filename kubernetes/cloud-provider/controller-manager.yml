@@ -45,7 +45,7 @@ spec:
         tty: true
         # for in-tree providers we use k8s.gcr.io/cloud-controller-manager
         # this can be replaced with any other image for out-of-tree providers
-        image: sasenomura/cloud-controller-manager:v2.05
+        image: sasenomura/cloud-controller-manager:v2.06
         # command:
         # - /go/src/github.com/learnCloudProvideer/main
         # - --cloud-provider=cloud  # Add your own cloud provider here!
