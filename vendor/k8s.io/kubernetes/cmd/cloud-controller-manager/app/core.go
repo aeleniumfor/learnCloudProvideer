@@ -45,10 +45,23 @@ func startCloudNodeController(ctx *cloudcontrollerconfig.CompletedConfig, cloud 
 		// cloud node controller uses existing cluster role from node-controller
 		ctx.ClientBuilder.ClientOrDie("node-controller"),
 		cloud,
-		ctx.ComponentConfig.NodeStatusUpdateFrequency.Duration)
+		ctx.ComponentConfig.NodeStatusUpdateFrequency.Duration,
+	)
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println(stopCh)
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println(nodeController)
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
+	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
 
 	go nodeController.Run(stopCh)
-
 	return nil, true, nil
 }
 

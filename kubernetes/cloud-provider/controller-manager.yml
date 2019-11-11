@@ -8,98 +8,74 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  name: system:cloud-controller-manager
   annotations:
     rbac.authorization.kubernetes.io/autoupdate: "true"
-  name: system:cloud-controller-manager
+  labels:
+    k8s-app: cloud-controller-manager
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps/status
-    verbs:
-      - get
-      - update
-      - patch
-  - apiGroups:
-      - ""
-    resources:
-      - events
-    verbs:
-      - create
-      - patch
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - nodes
-    verbs:
-      - '*'
-  - apiGroups:
-      - ""
-    resources:
-      - nodes/status
-    verbs:
-      - patch
-  - apiGroups:
-      - ""
-    resources:
-      - services
-    verbs:
-      - list
-      - patch
-      - update
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - services/status
-    verbs:
-      - list
-      - patch
-      - update
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - serviceaccounts
-    verbs:
-      - create
-      - get
-      - list
-      - watch
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - endpoints
-    verbs:
-      - create
-      - get
-      - list
-      - watch
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - secrets
-    verbs:
-      - create
-      - get
-      - list
-      - patch
-      - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - nodes/status
+  verbs:
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services/status
+  verbs:
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - endpoints
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumes
+  verbs:
+  - list
+  - watch
+  - patch
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -110,9 +86,23 @@ roleRef:
   kind: ClusterRole
   name: system:cloud-controller-manager
 subjects:
-  - kind: ServiceAccount
-    name: cloud-controller-manager
-    namespace: kube-system
+- kind: ServiceAccount
+  name: cloud-controller-manager
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: system:cloud-controller-manager:extension-apiserver-authentication-reader
+  namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: extension-apiserver-authentication-reader
+subjects:
+- kind: ServiceAccount
+  name: cloud-controller-manager
+  namespace: kube-system
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -136,11 +126,11 @@ spec:
         tty: true
         # for in-tree providers we use k8s.gcr.io/cloud-controller-manager
         # this can be replaced with any other image for out-of-tree providers
-        image: sasenomura/cloud-controller-manager:debug
-        # command:
-        # - /go/src/github.com/learnCloudProvideer/main
-        # - --cloud-provider=cloud  # Add your own cloud provider here!
-        # - --leader-elect=true
+        image: sasenomura/cloud-controller-manager:v3.4.1
+        command:
+        - /go/src/github.com/learnCloudProvideer/main
+        - --cloud-provider=testcloud  # Add your own cloud provider here!
+        - --leader-elect=true
         # - --use-service-account-credentials
       tolerations:
       # this is required so CCM can bootstrap itself

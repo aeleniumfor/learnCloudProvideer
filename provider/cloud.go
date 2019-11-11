@@ -14,9 +14,9 @@ type cloud struct {
 }
 
 // ProviderName is ProviderName
-const ProviderName = "cloud"
+const ProviderName = "testcloud"
 
-func newCloud(configReader io.Reader) (cloudprovider.Interface, error) {
+func newCloud() (cloudprovider.Interface, error) {
 	fmt.Fprintf(os.Stderr, "star: %v\n", "newCloud")
 	return &cloud{
 		loadBalancers: newLoadbalancers(),
@@ -25,8 +25,8 @@ func newCloud(configReader io.Reader) (cloudprovider.Interface, error) {
 }
 
 func init() {
-	cloudprovider.RegisterCloudProvider(ProviderName, func(config io.Reader) (cloudprovider.Interface, error) {
-		return newCloud(config)
+	cloudprovider.RegisterCloudProvider(ProviderName, func(io.Reader) (cloudprovider.Interface, error) {
+		return newCloud()
 	})
 }
 
@@ -38,11 +38,11 @@ func (c *cloud) LoadBalancer() (cloudprovider.LoadBalancer, bool) {
 }
 
 func (c *cloud) Instances() (cloudprovider.Instances, bool) {
-	return nil, true
+	return c.instances, true
 }
 
 func (c *cloud) Zones() (cloudprovider.Zones, bool) {
-	return nil, true
+	return nil, false
 }
 
 func (c *cloud) Clusters() (cloudprovider.Clusters, bool) {
@@ -54,7 +54,7 @@ func (c *cloud) Routes() (cloudprovider.Routes, bool) {
 }
 
 func (c *cloud) ProviderName() string {
-	return "cloud"
+	return ProviderName
 }
 
 func (c *cloud) ScrubDNS(nameservers, searches []string) (nsOut, srchOut []string) {
