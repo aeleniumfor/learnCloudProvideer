@@ -47,19 +47,6 @@ func startCloudNodeController(ctx *cloudcontrollerconfig.CompletedConfig, cloud 
 		cloud,
 		ctx.ComponentConfig.NodeStatusUpdateFrequency.Duration,
 	)
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println(stopCh)
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println(nodeController)
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
-	fmt.Println("tttttttttttttttttttttttttttttttttttttttttttttttt")
 
 	go nodeController.Run(stopCh)
 	return nil, true, nil
