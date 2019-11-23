@@ -20,7 +20,7 @@ func newCloud() (cloudprovider.Interface, error) {
 	fmt.Fprintf(os.Stderr, "star: %v\n", "newCloud")
 	return &cloud{
 		loadBalancers: newLoadbalancers(),
-		instances:     newInstances(),
+		//instances:     newInstances(),
 	}, nil
 }
 
@@ -38,7 +38,9 @@ func (c *cloud) LoadBalancer() (cloudprovider.LoadBalancer, bool) {
 }
 
 func (c *cloud) Instances() (cloudprovider.Instances, bool) {
-	return c.instances, true
+	// return c.instances, true
+	return nil, false
+
 }
 
 func (c *cloud) Zones() (cloudprovider.Zones, bool) {
