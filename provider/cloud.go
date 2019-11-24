@@ -10,7 +10,7 @@ import (
 
 type cloud struct {
 	loadBalancers cloudprovider.LoadBalancer
-	instances     cloudprovider.Instances
+	// instances     cloudprovider.Instances
 }
 
 // ProviderName is ProviderName
@@ -26,6 +26,7 @@ func newCloud() (cloudprovider.Interface, error) {
 
 func init() {
 	cloudprovider.RegisterCloudProvider(ProviderName, func(io.Reader) (cloudprovider.Interface, error) {
+		fmt.Println(ProviderName)
 		return newCloud()
 	})
 }
