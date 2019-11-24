@@ -123,10 +123,11 @@ spec:
       serviceAccountName: cloud-controller-manager
       containers:
       - name: cloud-controller-manager
+        imagePullPolicy: Always
         tty: true
         # for in-tree providers we use k8s.gcr.io/cloud-controller-manager
         # this can be replaced with any other image for out-of-tree providers
-        image: sasenomura/cloud-controller-manager:v1.23
+        image: sasenomura/cloud-controller-manager:v1.26
         command:
         # - /go/src/github.com/learnCloudProvideer/main
         # - --cloud-provider=testcloud  # Add your own cloud provider here!

@@ -10,7 +10,7 @@ import (
 
 type cloud struct {
 	loadBalancers cloudprovider.LoadBalancer
-	// instances     cloudprovider.Instances
+	instances     cloudprovider.Instances
 }
 
 // ProviderName is ProviderName
@@ -20,7 +20,7 @@ func newCloud() (cloudprovider.Interface, error) {
 	fmt.Fprintf(os.Stderr, "star: %v\n", "newCloud")
 	return &cloud{
 		loadBalancers: newLoadbalancers(),
-		//instances:     newInstances(),
+		instances:     newInstances(),
 	}, nil
 }
 
@@ -39,9 +39,7 @@ func (c *cloud) LoadBalancer() (cloudprovider.LoadBalancer, bool) {
 }
 
 func (c *cloud) Instances() (cloudprovider.Instances, bool) {
-	// return c.instances, true
-	return nil, false
-
+	return c.instances, true
 }
 
 func (c *cloud) Zones() (cloudprovider.Zones, bool) {
