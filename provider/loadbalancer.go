@@ -18,7 +18,7 @@ func newLoadbalancers() cloudprovider.LoadBalancer {
 
 func (lb *loadbalancers) GetLoadBalancer(ctx context.Context, clusterName string, service *v1.Service) (status *v1.LoadBalancerStatus, exists bool, err error) {
 	// GetLoadBalancer(ctx context.Context, clusterName string, service *v1.Service) (status *v1.LoadBalancerStatus, exists bool, err error)
-	fmt.Println(clusterName)
+	lb.GetLoadBalancerName(ctx, clusterName, service)
 	// status = &v1.LoadBalancerStatus{}
 	// status.Ingress = append(status.Ingress, v1.LoadBalancerIngress{IP: "192.168.56.104"})
 
@@ -27,13 +27,19 @@ func (lb *loadbalancers) GetLoadBalancer(ctx context.Context, clusterName string
 
 func (lb *loadbalancers) GetLoadBalancerName(ctx context.Context, clusterName string, service *v1.Service) string {
 	// GetLoadBalancerName(ctx context.Context, clusterName string, service *v1.Service) string
-	return ""
+	return cloudprovider.DefaultLoadBalancerName(service)
 }
 
 func (lb *loadbalancers) EnsureLoadBalancer(ctx context.Context, clusterName string, service *v1.Service, nodes []*v1.Node) (*v1.LoadBalancerStatus, error) {
 	// EnsureLoadBalancer(ctx context.Context, clusterName string, service *v1.Service, nodes []*v1.Node) (*v1.LoadBalancerStatus, error)
-	fmt.Println(clusterName)
-	return nil, nil
+	_, exists, err := lb.GetLoadBalancer(ctx, clusterName, service)
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println(exists)
+	var lbStatus *v1.LoadBalancerStatus
+	lbStatus, _, err = lb.GetLoadBalancer(ctx, clusterName, service)
+	return lbStatus, nil
 
 }
 
