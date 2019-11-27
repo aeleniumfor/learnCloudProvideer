@@ -11,6 +11,7 @@ import (
 type cloud struct {
 	loadBalancers cloudprovider.LoadBalancer
 	instances     cloudprovider.Instances
+	zones         cloudprovider.Zones
 }
 
 // ProviderName is ProviderName
@@ -21,6 +22,7 @@ func newCloud() (cloudprovider.Interface, error) {
 	return &cloud{
 		loadBalancers: newLoadbalancers(),
 		instances:     newInstances(),
+		zones:         newZones("testcloud"),
 	}, nil
 }
 
@@ -32,6 +34,7 @@ func init() {
 }
 
 func (c *cloud) Initialize(clientBuilder cloudprovider.ControllerClientBuilder, stop <-chan struct{}) {
+	fmt.Println("start cloud.go Initialize")
 }
 
 func (c *cloud) LoadBalancer() (cloudprovider.LoadBalancer, bool) {
@@ -43,7 +46,7 @@ func (c *cloud) Instances() (cloudprovider.Instances, bool) {
 }
 
 func (c *cloud) Zones() (cloudprovider.Zones, bool) {
-	return nil, false
+	return c.zones, false
 }
 
 func (c *cloud) Clusters() (cloudprovider.Clusters, bool) {

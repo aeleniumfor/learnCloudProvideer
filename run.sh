@@ -3,6 +3,7 @@
 
         # - --use-service-account-credentials
 
+kind delete cluster
 kind create cluster --config $(pwd)/kubernetes/multi.yml
 export KUBECONFIG="$(kind get kubeconfig-path)"
 
