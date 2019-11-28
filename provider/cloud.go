@@ -6,6 +6,7 @@ import (
 	"os"
 
 	cloudprovider "k8s.io/cloud-provider"
+	"k8s.io/kubernetes/pkg/controller"
 )
 
 type cloud struct {
@@ -33,7 +34,7 @@ func init() {
 	})
 }
 
-func (c *cloud) Initialize(clientBuilder cloudprovider.ControllerClientBuilder, stop <-chan struct{}) {
+func (c *cloud) Initialize(clientBuilder controller.ControllerClientBuilder, stop <-chan struct{}) {
 	fmt.Println("start cloud.go Initialize")
 }
 
