@@ -38,6 +38,10 @@ func (c *cloud) Initialize(clientBuilder cloudprovider.ControllerClientBuilder, 
 }
 
 func (c *cloud) LoadBalancer() (cloudprovider.LoadBalancer, bool) {
+	fmt.Println("loadBarancer")
+	fmt.Println("loadBarancer")
+	fmt.Println("loadBarancer")
+
 	return c.loadBalancers, true
 }
 
