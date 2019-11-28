@@ -5,14 +5,15 @@ import (
 	"fmt"
 
 	v1 "k8s.io/api/core/v1"
-	cloudprovider "k8s.io/cloud-provider"
+	cloudprovider  "k8s.io/kubernetes/pkg/cloudprovider"
+
 )
 
 type loadbalancers struct {
 }
 
 // newLoadbalancers returns a cloudprovider.LoadBalancer whose concrete type is a *loadbalancer.
-func newLoadbalancers() cloudprovider.LoadBalancer {
+func newLoadbalancers() cloudprovider.Loadbalancer {
 	return &loadbalancers{}
 }
 

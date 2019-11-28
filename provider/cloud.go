@@ -28,7 +28,7 @@ func newCloud() (cloudprovider.Interface, error) {
 }
 
 func init() {
-	cloudprovider.RegisterCloudProvider(ProviderName, func(io.Reader) (cloudprovider.Interface, error) {
+	cloudprovider.RegisterCloudProvider(ProviderName, func(io.Reader) (cloudprovider, error) {
 		fmt.Println(ProviderName)
 		return newCloud()
 	})
