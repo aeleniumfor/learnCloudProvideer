@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	cloudprovider "k8s.io/cloud-provider"
+	cloudprovider  "k8s.io/kubernetes/pkg/cloudprovider"
 	"k8s.io/kubernetes/pkg/controller"
 )
 
