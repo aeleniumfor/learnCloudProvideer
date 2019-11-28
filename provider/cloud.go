@@ -6,7 +6,6 @@ import (
 	"os"
 
 	cloudprovider "k8s.io/cloud-provider"
-	"k8s.io/kubernetes/pkg/controller"
 )
 
 type cloud struct {
@@ -15,8 +14,16 @@ type cloud struct {
 	zones         cloudprovider.Zones
 }
 
-// ProviderName is ProviderName
-const ProviderName = "testcloud"
+const (
+	//ProviderName is Cloud-Provider-Name
+	ProviderName = "testcloud"
+
+	// TagsKubernetesResource is a marker tag indicating that resource is part of k8s cluster
+	TagsKubernetesResource = "@k8s"
+
+	// TagsClusterID is tag name for mark ClusterID
+	TagsClusterID = TagsKubernetesResource + ".ClusterID"
+)
 
 func newCloud() (cloudprovider.Interface, error) {
 	fmt.Fprintf(os.Stderr, "star: %v\n", "newCloud")
@@ -34,7 +41,7 @@ func init() {
 	})
 }
 
-func (c *cloud) Initialize(clientBuilder controller.ControllerClientBuilder, stop <-chan struct{}) {
+func (c *cloud) Initialize(clientBuilder cloudprovider.ControllerClientBuilder, stop <-chan struct{}) {
 	fmt.Println("start cloud.go Initialize")
 }
 
