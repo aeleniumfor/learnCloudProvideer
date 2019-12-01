@@ -37,8 +37,8 @@ func (lb *loadbalancers) EnsureLoadBalancer(ctx context.Context, clusterName str
 		return nil, err
 	}
 	fmt.Println(exists)
-	var lbStatus *v1.LoadBalancerStatus
-	lbStatus, _, err = lb.GetLoadBalancer(ctx, clusterName, service)
+	lbStatus := &v1.LoadBalancerStatus{}
+	lbStatus.Ingress = []v1.LoadBalancerIngress{{IP: "192.168.11.01"}}
 	return lbStatus, nil
 
 }
