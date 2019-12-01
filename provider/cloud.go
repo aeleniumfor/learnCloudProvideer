@@ -58,7 +58,7 @@ func (c *cloud) Instances() (cloudprovider.Instances, bool) {
 }
 
 func (c *cloud) Zones() (cloudprovider.Zones, bool) {
-	return c.zones, false
+	return c.zones, true
 }
 
 func (c *cloud) Clusters() (cloudprovider.Clusters, bool) {
